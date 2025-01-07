@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 
 class Field:
     def __init__(self, value):
@@ -32,3 +33,30 @@ class Birthday(Field):
     
     def __str__(self):
         return self.value.strftime("%d.%m.%Y")
+
+class Email:
+    def __init__(self, email):
+        if self.validate(email):
+            self.email = email
+        else:
+            raise ValueError("Invalid email format.")
+    
+    def __str__(self):
+        return self.email
+
+    def validate(self, email):
+        pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        return re.match(pattern, email) is not None
+    
+class Address:
+    def __init__(self, address):
+        if self.validate(address):
+            self.address = address
+        else:
+            raise ValueError("Invalid address. Must be up to 100 characters.")
+    
+    def __str__(self):
+        return self.address
+
+    def validate(self, address):
+        return len(address) <= 100
