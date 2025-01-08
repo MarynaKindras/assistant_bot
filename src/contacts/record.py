@@ -1,10 +1,12 @@
-from .fields import Name, Phone, Birthday
+from .fields import Name, Phone, Birthday, Address, Email
 
 class Record:
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
         self.birthday = None
+        self.email = None
+        self.address = None
 
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
@@ -37,7 +39,16 @@ class Record:
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
 
+    def add_email(self, email):
+        self.email = Email(email)
+
+    def add_address(self, address):
+        self.address = Address(address)
+
     def __str__(self):
         phones = '; '.join(p.value for p in self.phones)
         birthday = f"birthday: {self.birthday}" if self.birthday else "no birthday set"
-        return f"Contact name: {self.name.value}, phones: {phones}, {birthday}"
+        address = f"address: {getattr(self, 'address', 'no address set')}"
+        email = f"email: {getattr(self, 'email', 'no email set')}"
+
+        return f"Contact name: {self.name.value}, phones: {phones}, {birthday}, {email}, {address}"

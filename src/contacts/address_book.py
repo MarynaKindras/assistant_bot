@@ -45,6 +45,10 @@ class AddressBook(UserDict):
     def display_all_contacts(self):
         if not self.data:
             print("The address book is empty.")
+        if not hasattr(self, 'email'):
+            self.email = None
+        if not hasattr(self, 'address'):
+            self.address = None 
         else:
             print("All contacts:")
             for record in self.data.values():
