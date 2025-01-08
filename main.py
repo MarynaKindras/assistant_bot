@@ -3,6 +3,7 @@ from src.utils.utils import parse_input
 from src.contacts.address_book import AddressBook
 from src.notes.notebook import NoteBook
 from src.contacts.commands import add_contact, change_contact, show_phone, add_birthday, show_birthday, birthdays
+from src.features.help import print_help
 from src.notes.note_commands import add_note
 contacts_file_name = "addressbook.pkl"
 notes_file_name = "notebook.pkl"
@@ -40,7 +41,7 @@ def main():
             elif command == "all-notes":
                 notebook.display_all_notes()
             elif command == "help":
-                print("Available commands: hello, add, change, phone, all, help, close or exit")
+                print_help()
             else:
                 print("Invalid command.")
     finally:
