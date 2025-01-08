@@ -1,12 +1,15 @@
 from src.utils.persistence import save_data, load_data
 from src.utils.utils import parse_input
 from src.contacts.address_book import AddressBook
+from src.notes.notebook import NoteBook
 from src.contacts.commands import add_contact, change_contact, show_phone, add_birthday, show_birthday, birthdays
-
+from src.notes.note_commands import add_note
 contacts_file_name = "addressbook.pkl"
+notes_file_name = "notebook.pkl"
 
 def main():
     book = load_data(contacts_file_name, AddressBook)
+    notebook = load_data(notes_file_name, NoteBook)
     print("Welcome to the assistant bot!")
     try:
         while True:
@@ -32,12 +35,17 @@ def main():
                 print(show_birthday(args, book))
             elif command == "birthdays":
                 print(birthdays(args, book))
+            elif command == "add-note":
+                print(add_note(args, notebook))
+            elif command == "all-notes":
+                notebook.display_all_notes()
             elif command == "help":
                 print("Available commands: hello, add, change, phone, all, help, close or exit")
             else:
                 print("Invalid command.")
     finally:
         save_data(book, contacts_file_name)
+        save_data(notebook, notes_file_name) 
 
 if __name__ == "__main__":
     main()
