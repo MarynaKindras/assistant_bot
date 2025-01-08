@@ -2,6 +2,7 @@ from src.utils.persistence import save_data, load_data
 from src.utils.utils import parse_input
 from src.contacts.address_book import AddressBook
 from src.contacts.commands import add_contact, change_contact, show_phone, add_birthday, show_birthday, birthdays
+from src.features.help import print_help
 
 contacts_file_name = "addressbook.pkl"
 
@@ -33,7 +34,7 @@ def main():
             elif command == "birthdays":
                 print(birthdays(args, book))
             elif command == "help":
-                print("Available commands: hello, add, change, phone, all, help, close or exit")
+                print_help()
             else:
                 print("Invalid command.")
     finally:
