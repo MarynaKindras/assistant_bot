@@ -103,9 +103,21 @@ def show_birthday(args, book):
 
 @input_error
 def birthdays(args, book):
-    upcoming_birthdays = book.get_upcoming_birthdays()
+    # Handle the days argument from the command
+    if not args:
+        return "Please provide the number of days (e.g., 'birthdays 8')."
+    
+    try:
+        days = int(args[0])  # Convert the first argument to an integer
+    except ValueError:
+        return "Invalid input. Please provide a valid number of days."
+    
+    # Get upcoming birthdays
+    upcoming_birthdays = book.get_upcoming_birthdays(days=days)
     if not upcoming_birthdays:
         return "No upcoming birthdays."
+    
+    # Format and return the result
     return "\n".join(
         f"{record['name']}: {record['congratulation_date']}"
         for record in upcoming_birthdays
