@@ -33,7 +33,7 @@ The Personal Assistant is a versatile application designed to simplify your life
    pip install tabulate
    ```
 
-### :computer: Usage:
+### :arrow_forward: Usage:
 
 Run the main script to start the application:
 
@@ -43,7 +43,7 @@ hello
 
 ## Commands list:
 
-### :arrow_forward: Main commands:
+### :computer: Main commands:
 
 | Available commands: | Parameters:    | Description:            |
 | ------------------- | -------------- | ----------------------- |
