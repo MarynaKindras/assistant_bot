@@ -65,41 +65,101 @@ def add_contact(args, book):
 
 @input_error
 def change_contact(args, book):
-        if len(args) < 3:
-            raise IndexError
-        name, old_phone, new_phone = args
-        record = book.find(name)
-        if record is None:
-            raise KeyError
-        record.edit_phone(old_phone, new_phone)
+    if len(args) < 3:
+        return "Please check your request and specify the contact name, field which you would like to change (phone/email/address/birthday), and the value to change."
+    print(args)
+    new_value = args[-1]
+        # The second-to-last argument is the field (phone/email/address/birthday)
+    field_to_change = args[-2].lower()
+    # All other arguments are part of the name
+    name = ' '.join(args[:-2]).strip()
+    print(field_to_change.isdigit())
+    if field_to_change.isdigit():
+        field_to_change = args[-3].lower()
+        name = ' '.join(args[:-3]).strip()
+        print("1", field_to_change, name)
+  
+
+   
+    print(f"Debug: Searching for contact with name: {name}")  # Debugging line
+    print("2", field_to_change, name)
+    # Find the contact by name
+    record = book.find(name)
+    if record is None:
+        return f"Contact not found. Debug: Contact with name '{name}' was not found."
+
+    # Handle the field-to-change
+    if field_to_change == "phone":
+        if len(args) < 4:
+            return "Please provide both the old phone number and the new phone number."
+        old_phone = args[-2]  # The old phone number is the third-to-last argument
+        print(f"Debug: Trying to change phone from {old_phone} to {new_value}")  # Debugging line
+        
+        # Ensure the phone is being correctly validated
+        try:
+            record.edit_phone(old_phone, new_value)
+        except ValueError as e:
+            return f"Error changing phone: {str(e)}"
+        
         return "Phone changed."
+    
+    elif field_to_change == "email":
+        # Assuming the email is validated using some regex or format check
+        if "@" not in new_value or "." not in new_value:
+            return "Invalid email format."
+        record.email = new_value  # Update the email
+        return "Email changed."
+    
+    elif field_to_change == "address":
+        record.address = new_value  # Update the address
+        return "Address changed."
+    
+    elif field_to_change == "birthday":
+        try:
+            record.add_birthday(new_value)  # Assuming add_birthday method can handle date format conversion
+        except ValueError:
+            return "Invalid birthday format. Please use 'DD.MM.YYYY'."
+        return "Birthday changed."
+    
+    else:
+        return "Invalid field. Please choose one of: phone, email, address, birthday."
+    
+
 
 @input_error
 def show_phone(args, book):
-        name = args[0]
-        record = book.find(name)
-        if record is None:
-            raise KeyError
-        return '; '.join(p.value for p in record.phones)
+    # Join all words in args to handle multi-word names
+    name = ' '.join(args).strip()
+    record = book.find(name)
+    if record is None:
+        raise KeyError("Contact not found")
+    return '; '.join(p.value for p in record.phones)
 
 @input_error
 def add_birthday(args, book):
     if len(args) < 2:
-        raise IndexError
-    name, birthday = args
+        raise IndexError("Not enough arguments. Provide a name and a birthday.")
+    
+    # Join all but the last argument for the name, and treat the last as the birthday
+    *name_parts, birthday = args
+    name = ' '.join(name_parts).strip()
+
     record = book.find(name)
     if record is None:
-        raise KeyError
+        raise KeyError("Contact not found")
+    
     record.add_birthday(birthday)
     return "Birthday added."
 
 @input_error
 def show_birthday(args, book):
-    name = args[0]
+    name = ' '.join(args).strip()
+    print(f"Looking up record for: {name}")
     record = book.find(name)
     if record is None:
-        raise KeyError
-    return record.birthday
+        raise KeyError("Contact not found")
+    return record.birthday or "No birthday set"
+
 
 @input_error
 def birthdays(args, book):
