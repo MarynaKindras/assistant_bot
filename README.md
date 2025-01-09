@@ -53,20 +53,20 @@ hello
 
 ### :calling: Contacts commands:
 
-| Available commands: | Parameters:    | Description:                                           |
-| ------------------- | -------------- | ------------------------------------------------------ |
-| add                 | <name> <phone> | Add a new contact with the given name and phone number.|
-| change              | <name> <phone> | Change the phone number for an existing contact.       |
-| phone               | <name>         | Show the phone numbers for the given contact.          |
-| all                 |                | Display all contacts in the address book.              |
+| Available commands: | Parameters:        | Description:                                           |
+| ------------------- | ------------------ | ------------------------------------------------------ |
+| add                 | < name > < phone > | Add a new contact with the given name and phone number.|
+| change              | < name > < phone > | Change the phone number for an existing contact.       |
+| phone               | < name >           | Show the phone numbers for the given contact.          |
+| all                 |                    | Display all contacts in the address book.              |
 
 ### :calendar: Birthday commands:
 
-| Available commands: | Parameters:    | Description:                                                   |
-| ------------------- | -------------- | -------------------------------------------------------------- |
-| add-birthday        | <name> <date>  | Add a birthday for the given contact (format: DD.MM.YYYY).     |
-| show-birthday       | <name>         | Show the birthday of the given contact.Show this help message. |
-| birthdays           | <days>         | Show contacts with birthdays in the next given number of days. |
+| Available commands: | Parameters:        | Description:                                                   |
+| ------------------- | ------------------ | -------------------------------------------------------------- |
+| add-birthday        | < name > < date >  | Add a birthday for the given contact (format: DD.MM.YYYY).     |
+| show-birthday       | < name >           | Show the birthday of the given contact.Show this help message. |
+| birthdays           | < days >           | Show contacts with birthdays in the next given number of days. |
 
 ### :label: Notes commands:
 
