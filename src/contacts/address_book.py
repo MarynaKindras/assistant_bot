@@ -15,42 +15,42 @@ class AddressBook(UserDict):
             del self.data[name]
         else:
             raise ValueError("Record not found.")
-        
-    def get_upcoming_birthdays(self, days=7):
+    
+    #     return upcoming_birthdays
+    def get_upcoming_birthdays(self, days):
         today = datetime.today().date()
         end_date = today + timedelta(days=days)
-    
+
         upcoming_birthdays = []
-    
+
         for record in self.data.values():
-        # Ensure the record has a valid birthday value
-         if not (hasattr(record, 'birthday') and record.birthday and record.birthday.value):
-            continue  # Skip records without a valid birthday
+            # Ensure the record has a valid birthday value
+            if not (hasattr(record, 'birthday') and record.birthday and record.birthday.value):
+                continue  # Skip records without a valid birthday
 
-        # Calculate the birthday for this year
-        birthday_date = record.birthday.value.date()
-        birthday_this_year = birthday_date.replace(year=today.year)
-        
-        # If the birthday has already passed this year, use next year's date
-        if birthday_this_year < today:
-            birthday_this_year = birthday_this_year.replace(year=today.year + 1)
-        
-        # Check if the birthday falls within the specified range
-        if today <= birthday_this_year <= end_date:
-            # Adjust the congratulation date if it falls on a weekend
-            if birthday_this_year.weekday() in (5, 6):  # Saturday or Sunday
-                days_to_monday = (7 - birthday_this_year.weekday()) % 7
-                congratulation_date = birthday_this_year + timedelta(days=days_to_monday)
-            else:
-                congratulation_date = birthday_this_year
-            
-            upcoming_birthdays.append({
-                "name": record.name.value,
-                "congratulation_date": congratulation_date.strftime("%d.%m.%Y")
-            })
-    
+            # Calculate the birthday for this year
+            birthday_date = record.birthday.value.date()
+            birthday_this_year = birthday_date.replace(year=today.year)
+
+            # If the birthday has already passed this year, use next year's date
+            if birthday_this_year < today:
+                birthday_this_year = birthday_this_year.replace(year=today.year + 1)
+
+            # Check if the birthday falls within the specified range
+            if today <= birthday_this_year <= end_date:
+                # Adjust the congratulation date if it falls on a weekend
+                if birthday_this_year.weekday() in (5, 6):  # Saturday or Sunday
+                    days_to_monday = (7 - birthday_this_year.weekday()) % 7
+                    congratulation_date = birthday_this_year + timedelta(days=days_to_monday)
+                else:
+                    congratulation_date = birthday_this_year
+
+                upcoming_birthdays.append({
+                    "name": record.name.value,
+                    "congratulation_date": congratulation_date.strftime("%d.%m.%Y")
+                })
+
         return upcoming_birthdays
-
 
     
     def display_all_contacts(self):
