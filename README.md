@@ -26,8 +26,7 @@ The Personal Assistant is a versatile application designed to simplify your life
    source venv/Scripts/activate
    ```
 
-3. Install the dependencies:
-   Before running the bot, please install the necessary dependencies using the following commands:
+3. Before running the bot, install the necessary dependencies using the following commands:
 
    ```bash
    pip install colorama
