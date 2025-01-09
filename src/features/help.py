@@ -13,6 +13,9 @@ def print_help():
         ("add-birthday", "<name> <date>", "Add a birthday for the given contact (format: DD.MM.YYYY)."),
         ("show-birthday", "<name>", "Show the birthday of the given contact."),
         ("birthdays", "<days>", "Show contacts with birthdays in the next given number of days."),
+        ("add-note", "", "Add a new note. You will be prompted to enter the title, text, and tags."),
+        ("all-notes", "", "Display all notes in the notebook."),
+        ("find-notes", "", "Search notes by title, text, or tags. Then select a note to edit or delete."),
         ("help", "", "Show this help message."),
         ("close, exit", "", "Exit the assistant bot.")
     ]
