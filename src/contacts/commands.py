@@ -2,39 +2,19 @@ from ..utils.utils import input_error
 from .record import Record
 
 
-# @input_error
-# def add_contact(args, book):
-#     if len(args) < 2:
-#         raise IndexError
-    
-#     name, phone = args
-#     record = book.find(name)
-#     message = "Contact updated."
-#     if record is None:
-#         record = Record(name)
-#         book.add_record(record)
-#         message = "Contact added."
-#     if phone:
-#         record.add_phone(phone)
-    # return message
 
 @input_error
 def add_contact(args, book):
     if len(args) < 2:
         raise ValueError("Please provide both name and phone number.")
     
-    name, phone = args[0], args[1]
-    address, email, birthday = None, None, None
+    # The phone number is the last argument
+    phone = args[-1]
     
-    if len(args) > 2:
-        for i in range(2, len(args), 2):
-            if args[i] == 'address':
-                address = args[i + 1]
-            elif args[i] == 'email':
-                email = args[i + 1]
-            elif args[i] == 'birthday':
-                birthday = args[i + 1]
+    # Everything before the last argument is considered the name (can contain spaces)
+    name = " ".join(args[:-1])
     
+    # Look for an existing record or create a new one
     record = book.find(name)
     message = "Contact updated."
     
@@ -43,16 +23,32 @@ def add_contact(args, book):
         book.add_record(record)
         message = "Contact added."
     
+    # Add the phone number to the record
     record.add_phone(phone)
     
+    # Optional details (address, email, birthday)
+    address, email, birthday = None, None, None
+    
+    # Iterate over remaining arguments and look for specific fields (address, email, birthday)
+    for i in range(0, len(args) - 1, 2):  # Iterate in pairs, skipping the last element (phone)
+        if i + 1 < len(args):
+            if args[i] == 'address':
+                address = args[i + 1]
+            elif args[i] == 'email':
+                email = args[i + 1]
+            elif args[i] == 'birthday':
+                birthday = args[i + 1]
+    
+    # Add additional details if found
     if address:
         record.add_address(address)
     if email:
         record.add_email(email)
     if birthday:
         record.add_birthday(birthday)
-    
-    if not address and not email and not birthday:
+
+    # If no address, email, or birthday are added, prompt the user for more details
+    if not any([address, email, birthday]):
         response = input("Maybe you want to add more details? Such as address, email, and birthday? (yes/no): ")
         if response.lower() == 'yes':
             additional_info = input("Please enter additional details (e.g., email example@gmail.com birthday DD.MM.YYYY address: text up to 100 symbols): ").split()
@@ -107,9 +103,21 @@ def show_birthday(args, book):
 
 @input_error
 def birthdays(args, book):
-    upcoming_birthdays = book.get_upcoming_birthdays()
+    # Handle the days argument from the command
+    if not args:
+        return "Please provide the number of days (e.g., 'birthdays 8')."
+    
+    try:
+        days = int(args[0])  # Convert the first argument to an integer
+    except ValueError:
+        return "Invalid input. Please provide a valid number of days."
+    
+    # Get upcoming birthdays
+    upcoming_birthdays = book.get_upcoming_birthdays(days=days)
     if not upcoming_birthdays:
         return "No upcoming birthdays."
+    
+    # Format and return the result
     return "\n".join(
         f"{record['name']}: {record['congratulation_date']}"
         for record in upcoming_birthdays

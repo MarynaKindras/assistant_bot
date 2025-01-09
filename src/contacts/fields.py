@@ -7,12 +7,23 @@ class Field:
 
     def __str__(self):
         return str(self.value)
+# class Name(Field):
+#     def __init__(self, value):
+#         if not value:
+#             raise ValueError("Name is required.")
+#         super().__init__(value)
 
 class Name(Field):
     def __init__(self, value):
-        if not value:
-            raise ValueError("Name is required.")
+        parts = value.split(maxsplit=1)
+        
+        self.first_name = parts[0]
+        self.family_name = parts[1] if len(parts) > 1 else ""
+        
         super().__init__(value)
+    
+    def __str__(self):
+        return f"{self.first_name} {self.family_name}".strip()
 
 class Phone(Field):
     def __init__(self, value):
