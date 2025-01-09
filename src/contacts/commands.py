@@ -67,22 +67,16 @@ def add_contact(args, book):
 def change_contact(args, book):
     if len(args) < 3:
         return "Please check your request and specify the contact name, field which you would like to change (phone/email/address/birthday), and the value to change."
-    print(args)
     new_value = args[-1]
         # The second-to-last argument is the field (phone/email/address/birthday)
     field_to_change = args[-2].lower()
     # All other arguments are part of the name
     name = ' '.join(args[:-2]).strip()
-    print(field_to_change.isdigit())
+    
     if field_to_change.isdigit():
         field_to_change = args[-3].lower()
-        name = ' '.join(args[:-3]).strip()
-        print("1", field_to_change, name)
+        name = ' '.join(args[:-3]).strip() 
   
-
-   
-    print(f"Debug: Searching for contact with name: {name}")  # Debugging line
-    print("2", field_to_change, name)
     # Find the contact by name
     record = book.find(name)
     if record is None:
