@@ -2,7 +2,7 @@ from src.utils.persistence import save_data, load_data
 from src.utils.utils import parse_input
 from src.contacts.address_book import AddressBook
 from src.notes.notebook import NoteBook
-from src.contacts.commands import add_contact, change_contact, show_phone, add_birthday, show_birthday, birthdays
+from src.contacts.commands import add_contact, change_contact,delete_contact, show_phone, add_birthday, show_birthday, birthdays
 from src.features.help import print_help
 from src.notes.note_commands import add_note, find_notes_interactive
 contacts_file_name = "addressbook.pkl"
@@ -26,6 +26,8 @@ def main():
                 print(add_contact(args, book))
             elif command == "change":
                 print(change_contact(args, book))
+            elif command == "delete":
+                print(delete_contact(args, book))
             elif command == "phone":
                 print(show_phone(args, book))
             elif command == "all":
