@@ -169,4 +169,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-addressbook.pkl
+
+# Ignore any pkl files created by application
+
+*.pkl
