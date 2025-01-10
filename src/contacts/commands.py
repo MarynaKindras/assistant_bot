@@ -183,11 +183,18 @@ def delete_contact(args, book):
     
     name = " ".join(args).strip()
     
-    # Find and delete the contact
+    # Find contact
     record = book.find(name)
     if record is None:
         return f"Contact '{name}' not found."
     
-    # Remove the record from the book
-    book.delete(name)
-    return f"Contact '{name}' has been deleted."
+    # Ask for confirmation
+    confirmation = input(f"Are you sure you want to delete '{name}'? (yes/no): ").strip().lower()
+    if confirmation == "yes":
+        # Remove the record from the book
+        book.delete(name)
+        return f"Contact '{name}' has been deleted."
+    elif confirmation == "no":
+        return f"Contact '{name}' was not deleted."
+    else:
+        return "Invalid input. Please enter 'yes' or 'no'."
