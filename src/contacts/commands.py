@@ -68,11 +68,11 @@ def change_contact(args, book):
     if len(args) < 3:
         return "Please check your request and specify the contact name, field which you would like to change (phone/email/address/birthday), and the value to change."
     new_value = args[-1]
-        # The second-to-last argument is the field (phone/email/address/birthday)
+        # The second-to-last argument is the field (email/address/birthday)
     field_to_change = args[-2].lower()
     # All other arguments are part of the name
     name = ' '.join(args[:-2]).strip()
-    
+    # Check "phone" field
     if field_to_change.isdigit():
         field_to_change = args[-3].lower()
         name = ' '.join(args[:-3]).strip() 
@@ -89,7 +89,7 @@ def change_contact(args, book):
         old_phone = args[-2]  # The old phone number is the third-to-last argument
         print(f"Debug: Trying to change phone from {old_phone} to {new_value}")  # Debugging line
         
-        # Ensure the phone is being correctly validated
+        # Ensure the phone validated
         try:
             record.edit_phone(old_phone, new_value)
         except ValueError as e:
@@ -110,7 +110,7 @@ def change_contact(args, book):
     
     elif field_to_change == "birthday":
         try:
-            record.add_birthday(new_value)  # Assuming add_birthday method can handle date format conversion
+            record.add_birthday(new_value)  
         except ValueError:
             return "Invalid birthday format. Please use 'DD.MM.YYYY'."
         return "Birthday changed."
@@ -171,8 +171,23 @@ def birthdays(args, book):
     if not upcoming_birthdays:
         return "No upcoming birthdays."
     
-    # Format and return the result
     return "\n".join(
         f"{record['name']}: {record['congratulation_date']}"
         for record in upcoming_birthdays
     )
+
+@input_error
+def delete_contact(args, book):
+    if not args:
+        raise ValueError("Please provide the name of the contact to delete.")
+    
+    name = " ".join(args).strip()
+    
+    # Find and delete the contact
+    record = book.find(name)
+    if record is None:
+        return f"Contact '{name}' not found."
+    
+    # Remove the record from the book
+    book.delete(name)
+    return f"Contact '{name}' has been deleted."
