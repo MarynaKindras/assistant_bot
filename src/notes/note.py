@@ -1,5 +1,6 @@
 from src.notes.note_fields import Title, Text, Tags
 
+
 class Note:
     """
     A class representing a single note with a title, text, and optional tags.
@@ -12,6 +13,7 @@ class Note:
     Methods:
         __str__(): Returns a formatted string representation of the note.
     """
+
     def __init__(self, title, text, tags=None):
         """
         Initializes a Note object with the given title, text, and optional tags.
@@ -24,7 +26,8 @@ class Note:
         """
         self.title = Title(title)  # Validates and sets the note's title
         self.text = Text(text)  # Validates and sets the note's text
-        self.tags = Tags(tags) if tags else Tags()  # Creates a Tags object if tags are provided, otherwise initializes an empty Tags object
+        # Creates a Tags object if tags are provided, otherwise initializes an empty Tags object
+        self.tags = Tags(tags) if tags else Tags()
 
     def __str__(self):
         """

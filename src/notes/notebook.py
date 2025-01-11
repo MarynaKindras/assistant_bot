@@ -1,5 +1,6 @@
 from collections import UserDict
 
+
 class NoteBook(UserDict):
     """
     A class to manage a collection of notes. Inherits from UserDict for dictionary-like behavior.
@@ -8,7 +9,7 @@ class NoteBook(UserDict):
     def add_note(self, note):
         """
         Adds a note to the notebook. Ensures that the title of the note is unique.
-        
+
         Args:
             note: The Note object to be added to the notebook.
 
@@ -55,8 +56,9 @@ class NoteBook(UserDict):
             return [
                 note for note in self.data.values()
                 if search_term.lower() in note.title.value.lower() or
-                    search_term.lower() in note.text.value.lower() or
-                    any(search_term.lower() in tag.lower() for tag in note.tags.tags)
+                search_term.lower() in note.text.value.lower() or
+                any(search_term.lower() in tag.lower()
+                    for tag in note.tags.tags)
             ]
         else:
             raise ValueError("Invalid search field.")
