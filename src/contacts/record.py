@@ -1,5 +1,6 @@
 from .fields import Name, Phone, Birthday, Address, Email
 
+
 class Record:
     def __init__(self, name):
         self.name = Name(name)
@@ -35,10 +36,10 @@ class Record:
             if p.value == phone:
                 return p
         return None
-    
+
     def find(self, name):
-        return self.records.get(name) 
-    
+        return self.records.get(name)
+
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
 

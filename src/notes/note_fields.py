@@ -1,13 +1,14 @@
 class NoteField:
     """
     Base class for all note fields such as title and text.
-    
+
     Attributes:
         value: The value of the field.
-    
+
     Methods:
         __str__(): Returns the string representation of the field.
     """
+
     def __init__(self, value):
         self.value = value  # Assign the value to the field
 
@@ -27,6 +28,7 @@ class Title(NoteField):
 
     Inherits from NoteField and adds validation for the title.
     """
+
     def __init__(self, value):
         """
         Initializes the Title object with the given value.
@@ -38,7 +40,8 @@ class Title(NoteField):
             ValueError: If the title is empty.
         """
         if not value:
-            raise ValueError("Title is required.")  # Validate that title is not empty
+            # Validate that title is not empty
+            raise ValueError("Title is required.")
         super().__init__(value)  # Initialize the parent class
 
 
@@ -48,6 +51,7 @@ class Text(NoteField):
 
     Inherits from NoteField and adds validation for the text.
     """
+
     def __init__(self, value):
         """
         Initializes the Text object with the given value.
@@ -87,6 +91,7 @@ class Tags:
         add_tags_from_string(tags_string): Parses and adds tags from a comma-separated string.
         __str__(): Returns a comma-separated string representation of the tags.
     """
+
     def __init__(self, tags_string=None):
         """
         Initializes the Tags object. If a tags string is provided,
@@ -97,7 +102,8 @@ class Tags:
         """
         self.tags = []  # Initialize an empty list of tags
         if tags_string:
-            self.add_tags_from_string(tags_string)  # Parse and add tags if provided
+            # Parse and add tags if provided
+            self.add_tags_from_string(tags_string)
 
     def add_tags_from_string(self, tags_string):
         """
@@ -107,7 +113,8 @@ class Tags:
             tags_string: A comma-separated string of tags.
         """
         # Strip whitespace and ignore empty tags
-        tag_list = [tag.strip() for tag in tags_string.split(",") if tag.strip()]
+        tag_list = [tag.strip()
+                    for tag in tags_string.split(",") if tag.strip()]
         self.tags.extend(tag_list)  # Add the parsed tags to the list
 
     def __str__(self):

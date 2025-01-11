@@ -1,7 +1,10 @@
-from ..utils.utils import input_error  # Decorator for handling input-related errors
+# Decorator for handling input-related errors
+from ..utils.utils import input_error
 from .note import Note  # Note class for creating and managing notes
 
 # Function to add a note to the notebook
+
+
 @input_error
 def add_note(notebook):
     """
@@ -9,7 +12,7 @@ def add_note(notebook):
     Validates that the title and text are not empty. Tags are optional and can be 
     entered as comma-separated values.
     Adds the new note to the notebook.
-    
+
     Args:
         notebook: The notebook object to which the note will be added.
 
@@ -22,14 +25,16 @@ def add_note(notebook):
     text = input("Enter the text of the note: ").strip()
     if not text:
         raise ValueError("Text cannot be empty.")
-        
-    tags_input = input("Would you like to add tags? (Enter tags separated by commas or press Enter to skip): ").strip()
+
+    tags_input = input(
+        "Would you like to add tags? (Enter tags separated by commas or press Enter to skip): ").strip()
     tags = tags_input.split(",") if tags_input else []
 
     note = Note(title, text, ", ".join(tags) if tags else None)
     notebook.add_note(note)
 
     return f"Note '{title}' added successfully!"
+
 
 # Function to delete a note by its title
 @input_error
@@ -55,6 +60,8 @@ def delete_note_by_title(notebook):
     return f"Note '{title}' not found."
 
 # Function to find notes interactively based on a search term
+
+
 @input_error
 def find_notes_interactive(notebook):
     """
@@ -72,21 +79,25 @@ def find_notes_interactive(notebook):
     if not search_term:
         raise ValueError("Search term cannot be empty.")
 
-    search_in = input("Where do you want to search? (title, text, tags, all): ").strip().lower()
+    search_in = input(
+        "Where do you want to search? (title, text, tags, all): ").strip().lower()
     if search_in not in {"title", "text", "tags", "all"}:
-        raise ValueError("Invalid search option. Choose from 'title', 'text', 'tags', or 'all'.")
+        raise ValueError(
+            "Invalid search option. Choose from 'title', 'text', 'tags', or 'all'.")
 
     results = notebook.find_notes(search_term, search_in)
 
     if not results:
         return "No matching notes found."
 
-    print(f"Found {len(results)} matching note{'s' if len(results) > 1 else ''}:\n")
+    print(
+        f"Found {len(results)} matching note{'s' if len(results) > 1 else ''}:\n")
     for idx, note in enumerate(results, start=1):
         print(f"{idx}. {note}\n")
 
     # Ask the user for the next action
-    action = input("Would you like to edit or delete a note? (edit/delete/skip): ").strip().lower()
+    action = input(
+        "Would you like to edit or delete a note? (edit/delete/skip): ").strip().lower()
     if action not in {"edit", "delete", "skip"}:
         return "Invalid action. Skipping."
 
@@ -95,7 +106,8 @@ def find_notes_interactive(notebook):
 
     try:
         # Validate and retrieve the note to edit or delete
-        index = int(input(f"Enter the note number (1-{len(results)}): ").strip())
+        index = int(
+            input(f"Enter the note number (1-{len(results)}): ").strip())
         if index < 1 or index > len(results):
             raise ValueError
         note_to_edit = results[index - 1]
