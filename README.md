@@ -37,7 +37,7 @@ The Personal Assistant is a versatile application designed to simplify your life
 Run the main script to start the application:
 
 ```bash
-python src/main.py
+python main.py
 ```
 
 ## Commands list:
