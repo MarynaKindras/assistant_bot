@@ -39,11 +39,11 @@ def main():
             elif command == "birthdays":
                 print(birthdays(args, book))
             elif command == "add-note":
-                print(add_note(args, notebook))
+                print(add_note(notebook))
             elif command == "all-notes":
                 notebook.display_all_notes()
             elif command == "find-notes":
-                print(find_notes_interactive(args, notebook))
+                print(find_notes_interactive(notebook))
             elif command == "help":
                 print_help()
             else:
