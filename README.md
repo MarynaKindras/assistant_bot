@@ -26,11 +26,10 @@ The Personal Assistant is a versatile application designed to simplify your life
    source venv/Scripts/activate
    ```
 
-3. Before running the bot, install the necessary dependencies using the following commands:
+3. Before running the bot, install the necessary dependencies using the following command:
 
    ```bash
-   pip install colorama
-   pip install tabulate
+   pip install -r requirements.txt
    ```
 
 ### :arrow_forward: Usage:
@@ -38,7 +37,7 @@ The Personal Assistant is a versatile application designed to simplify your life
 Run the main script to start the application:
 
 ```bash
-hello
+python src/main.py
 ```
 
 ## Commands list:
