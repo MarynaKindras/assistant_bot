@@ -8,8 +8,30 @@ class AddressBook(UserDict):
         self.data[record.name.value] = record
 
 
-    def find(self, name):
-        return self.data.get(name, None)
+    # def find(self, name):
+    #     return self.data.get(name, None)
+    
+    def find(self, query):
+    # Find a record by name
+        return self.data.get(query)
+    
+    # def find(self, query):
+    
+    #     query = query.lower().strip()
+
+    #     for record in self.records.values():
+    #     # Match by name
+    #         if record.name.value.lower() == query:
+    #             return record
+
+    #     # Match by email
+    #     if record.email and record.email.lower() == query:
+    #         return record
+
+    #     # Match by phone number
+    #     for phone in record.phones:
+    #         if phone.value == query:
+    #             return record
 
     def delete(self, name):
         if name in self.data:
@@ -65,3 +87,5 @@ class AddressBook(UserDict):
             print("All contacts:")
             for record in self.data.values():
                 print(record)
+
+

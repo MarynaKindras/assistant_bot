@@ -6,12 +6,12 @@ init(autoreset=True)
 def print_help():
     help_data = [
         ("hello", "", "Greet the assistant."),
-        ("add", "<name> <phone>", "Add a new contact with the given name and phone number."),
-        ("change", "<name>","phone" "Change the phone number for an existing contact."),
-        ("change", "<name>", "Change any field for the existing contact."),
-        ("delete", "<name>", "Delete existing contact."),
-        ("phone", "<name>", "Show the phone numbers for the given contact."),
-        ("all", "", "Display all contacts in the address book."),
+        ("add-contact", "<name> <phone>", "Add a new contact with the given name and phone number."),
+        ("change-contact", "<name>","phone" "Change the phone number for an existing contact."),
+        ("change-contact", "<name>", "Change any field for the existing contact."),
+        ("delete-contact", "<name>", "Delete existing contact."),
+        ("show-contact", "<name>", "Show the phone numbers for the given contact."),
+        ("all-contacts", "", "Display all contacts in the address book."),
         ("add-birthday", "<name> <date>", "Add a birthday for the given contact (format: DD.MM.YYYY)."),
         ("show-birthday", "<name>", "Show the birthday of the given contact."),
         ("birthdays", "<days>", "Show contacts with birthdays in the next given number of days."),

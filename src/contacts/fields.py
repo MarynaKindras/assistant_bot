@@ -59,15 +59,35 @@ class Email:
         pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(pattern, email) is not None
     
+# class Address:
+#     def __init__(self, address):
+#         if self.validate(address):
+#             self.address = address
+#         else:
+#             raise ValueError("Invalid address. Must be up to 100 characters.")
+    
+#     def __str__(self):
+#         return self.address
+
+#     def validate(self, address):
+#         return len(address) <= 100
+    
 class Address:
     def __init__(self, address):
+        # Validate the address
         if self.validate(address):
-            self.address = address
+            self.address = address.strip()  # Remove leading/trailing whitespace
         else:
             raise ValueError("Invalid address. Must be up to 100 characters.")
     
     def __str__(self):
         return self.address
 
-    def validate(self, address):
-        return len(address) <= 100
+    @staticmethod
+    def validate(address):
+        """
+        Validates the address to ensure it is a string of up to 100 characters.
+        :param address: The address to validate.
+        :return: True if valid, False otherwise.
+        """
+        return isinstance(address, str) and len(address.strip()) <= 100
