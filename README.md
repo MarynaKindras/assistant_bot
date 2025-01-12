@@ -58,7 +58,7 @@ python main.py
 | change-contact      | < name > < phone > | Change the phone number for an existing contact.        |
 | delete-contact      | < name >           | Delete existing contact.                                |
 | show-contact        | < name >           | Show the phone numbers for the given contact.           |
-| all_contacts        |                    | Display all contacts in the address book.               |
+| all-contacts        |                    | Display all contacts in the address book.               |
 
 ### :calendar: Birthday commands:
 
