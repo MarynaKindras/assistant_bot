@@ -1,3 +1,11 @@
+"""
+This module provides the NoteBook class for managing a collection of notes.
+
+Features:
+- Add notes with unique titles.
+- Display all notes in the notebook.
+- Search notes by title, text, tags, or all fields.
+"""
 from collections import UserDict
 
 
