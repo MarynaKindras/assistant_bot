@@ -1,6 +1,20 @@
-# Decorator for handling input-related errors
-from ..utils.utils import input_error
-from .note import Note  # Note class for creating and managing notes
+"""
+This module provides classes for handling fields of a note, including title, text, and tags.
+
+The classes in this module ensure proper validation and representation of note fields.
+
+Classes:
+    NoteField: Base class for all note fields such as title and text.
+    Title: Represents the title of a note with validation.
+    Text: Represents the text content of a note with validation.
+    Tags: Handles a list of tags associated with a note, with functionality to parse tags from a string.
+
+Features:
+- Title and Text classes inherit from NoteField and provide specific validation logic.
+- Tags class offers methods to manage a list of tags, including parsing from a comma-separated string.
+"""
+from src.utils.utils import input_error  # Decorator for handling input-related errors
+from src.notes.note import Note  # Note class for creating and managing notes
 
 # Function to add a note to the notebook
 
@@ -35,6 +49,41 @@ def add_note(notebook):
 
     return f"Note '{title}' added successfully!"
 
+@input_error
+def edit_note(notebook, note_to_edit):
+    """
+    Edits an existing note by asking the user for new title, text, and tags.
+    Ensures the original note is not deleted until the new note is successfully created.
+
+    Args:
+        notebook: The notebook object containing the note.
+        note_to_edit: The note object to be edited.
+
+    Returns:
+        str: A success message if the note is edited successfully.
+    """
+    # Prompt the user for new values
+    new_title = input("Enter the new title of the note: ").strip()
+    if not new_title:
+        raise ValueError("Title cannot be empty.")
+    new_text = input("Enter the new text of the note: ").strip()
+    if not new_text:
+        raise ValueError("Text cannot be empty.")
+
+    new_tags_input = input(
+        "Enter new tags separated by commas (or press Enter to skip): ").strip()
+    new_tags = new_tags_input.split(",") if new_tags_input else []
+
+    # Attempt to create a new note
+    try:
+        new_note = Note(new_title, new_text, ", ".join(new_tags) if new_tags else None)
+        # Add the new note to the notebook
+        notebook.add_note(new_note)
+        # Remove the old note only after the new note is successfully added
+        del notebook.data[note_to_edit.title.value]
+        return "Note edited successfully."
+    except ValueError as e:
+        return f"Failed to edit note: {str(e)}"
 
 # Function to delete a note by its title
 @input_error
@@ -117,8 +166,7 @@ def find_notes_interactive(notebook):
     if action == "delete":
         # Delete the selected note
         return delete_note_by_title(notebook)
-    elif action == "edit":
-        # Edit the selected note by deleting the old note and adding a new one
-        del notebook.data[note_to_edit.title.value]
-        add_note(notebook)
-        return "Note edited successfully."
+    if action == "edit":
+        # Edit the selected note
+        result = edit_note(notebook, note_to_edit)
+        return result

@@ -1,4 +1,19 @@
+"""
+This module defines the Note class and its associated fields for managing notes.
+
+The Note class provides functionality to:
+- Store and validate a note's title, text, and tags.
+- Represent the note as a formatted string.
+
+Classes:
+    Note: Represents a single note with a title, text, and optional tags.
+
+Dependencies:
+    Title, Text, Tags: Classes for validating and handling specific fields of a note.
+"""
+
 from src.notes.note_fields import Title, Text, Tags
+# Importing Title, Text, and Tags classes for handling note fields (titles, text, tags)
 
 
 class Note:
