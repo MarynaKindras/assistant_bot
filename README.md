@@ -44,38 +44,40 @@ python main.py
 
 ### :computer: Main commands:
 
-| Available commands: | Parameters:    | Description:            |
-| ------------------- | -------------- | ----------------------- |
-| hello               |                | Greet the assistant.    |
-| help                |                | Show this help message. |
-| close or exit       |                | Exit the assistant bot. |
+| Available commands: | Parameters: | Description:            |
+| ------------------- | ----------- | ----------------------- |
+| hello               |             | Greet the assistant.    |
+| help                |             | Show this help message. |
+| close or exit       |             | Exit the assistant bot. |
 
 ### :calling: Contacts commands:
 
-| Available commands: | Parameters:        | Description:                                           |
-| ------------------- | ------------------ | ------------------------------------------------------ |
-| add                 | < name > < phone > | Add a new contact with the given name and phone number.|
-| change              | < name > < phone > | Change the phone number for an existing contact.       |
-| phone               | < name >           | Show the phone numbers for the given contact.          |
-| all                 |                    | Display all contacts in the address book.              |
+| Available commands: | Parameters:        | Description:                                            |
+| ------------------- | ------------------ | ------------------------------------------------------- |
+| add                 | < name > < phone > | Add a new contact with the given name and phone number. |
+| change              | < name > < phone > | Change the phone number for an existing contact.        |
+| phone               | < name >           | Show the phone numbers for the given contact.           |
+| all                 |                    | Display all contacts in the address book.               |
 
 ### :calendar: Birthday commands:
 
-| Available commands: | Parameters:        | Description:                                                   |
-| ------------------- | ------------------ | -------------------------------------------------------------- |
-| add-birthday        | < name > < date >  | Add a birthday for the given contact (format: DD.MM.YYYY).     |
-| show-birthday       | < name >           | Show the birthday of the given contact.Show this help message. |
-| birthdays           | < days >           | Show contacts with birthdays in the next given number of days. |
+| Available commands: | Parameters:       | Description:                                                   |
+| ------------------- | ----------------- | -------------------------------------------------------------- |
+| add-birthday        | < name > < date > | Add a birthday for the given contact (format: DD.MM.YYYY).     |
+| show-birthday       | < name >          | Show the birthday of the given contact.Show this help message. |
+| birthdays           | < days >          | Show contacts with birthdays in the next given number of days. |
 
 ### :label: Notes commands:
 
-| Available commands: | Parameters:    | Description:                                                                |
-| ------------------- | -------------- | --------------------------------------------------------------------------- |
-| add-note            |                | Add a new note. You will be prompted to enter the title, text, and tags.    |
-| all-notes           |                | Display all notes in the notebook.                                          |
-| find-notes          |                | Search notes by title, text, or tags. Then select a note to edit or delete. |
+| Available commands: | Parameters: | Description:                                                                |
+| ------------------- | ----------- | --------------------------------------------------------------------------- |
+| add-note            |             | Add a new note. You will be prompted to enter the title, text, and tags.    |
+| all-notes           |             | Display all notes in the notebook.                                          |
+| find-notes          |             | Search notes by title, text, or tags. Then select a note to edit or delete. |
 
 ## Usage example:
+
+![Usage](./assets/Usage_example_01.png)
 
 ## Technologies:
 
