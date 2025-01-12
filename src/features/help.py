@@ -17,11 +17,11 @@ def print_help():
     help_data = [
         (COMMANDS['hello'], "", "Greet the assistant."),
         (COMMANDS['add_contact'], "<name> <phone>",
-         "Add a new contact with the given name and phone number."),
+         "Add a new contact with the given name (multi-word) and phone number. You will be prompted to enter the address (multi-words), birthday, and email."),
         (COMMANDS['change_contact'], "<name>",
-         "Change any field for the existing contact."),
+         "Change address (multi-words), birthday, and email for the existing contact."),
         (COMMANDS['delete_contact'], "<name>", "Delete existing contact."),
-        (COMMANDS['show_contact'], "<name>",
+        (COMMANDS['show_contact'], "<name>","or", "<email>"
          "Show the phone numbers for the given contact."),
         (COMMANDS['all_contacts'], "",
          "Display all contacts in the address book."),

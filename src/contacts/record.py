@@ -1,4 +1,4 @@
-from .fields import Name, Phone, Birthday, Address, Email
+from src.contacts.fields import Name, Phone, Birthday, Address, Email
 
 class Record:
     def __init__(self, name):

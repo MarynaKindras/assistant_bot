@@ -1,4 +1,4 @@
-from ..utils.utils import input_error
+from src.utils.utils import input_error
 from .record import Record
 
 
