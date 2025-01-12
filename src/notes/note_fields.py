@@ -1,3 +1,29 @@
+"""
+This module provides classes for handling and validating fields of a note, including title, text, and tags.
+
+Classes:
+    NoteField:
+        - A base class for all note fields (e.g., title and text).
+        - Provides basic functionality for storing and representing a field value.
+
+    Title:
+        - Represents the title of a note.
+        - Inherits from NoteField and adds validation to ensure the title is not empty.
+
+    Text:
+        - Represents the text content of a note.
+        - Inherits from NoteField and ensures that the text is not empty through validation.
+
+    Tags:
+        - Manages a list of tags associated with a note.
+        - Includes methods for parsing and adding tags from a comma-separated string.
+
+Features:
+- Ensures proper validation for note fields such as title and text.
+- Provides utility for managing tags with flexible parsing and representation.
+"""
+
+
 class NoteField:
     """
     Base class for all note fields such as title and text.
