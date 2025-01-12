@@ -54,10 +54,11 @@ python main.py
 
 | Available commands: | Parameters:        | Description:                                            |
 | ------------------- | ------------------ | ------------------------------------------------------- |
-| add                 | < name > < phone > | Add a new contact with the given name and phone number. |
-| change              | < name > < phone > | Change the phone number for an existing contact.        |
-| phone               | < name >           | Show the phone numbers for the given contact.           |
-| all                 |                    | Display all contacts in the address book.               |
+| add-contact         | < name > < phone > | Add a new contact with the given name and phone number. |
+| change-contact      | < name > < phone > | Change the phone number for an existing contact.        |
+| delete-contact      | < name >           | Delete existing contact.                                |
+| show-contact        | < name >           | Show the phone numbers for the given contact.           |
+| all_contacts        |                    | Display all contacts in the address book.               |
 
 ### :calendar: Birthday commands:
 
