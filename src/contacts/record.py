@@ -36,11 +36,9 @@ class Record:
                 print(p)
                 return p
         return None
-    
-    # def find(self, name):
-    #     return self.records.get(name) 
+     
     def find(self, query):
-    # Find a record by name
+    # Find a record by query
         return self.data.get(query)
     
     def show_contact(args, book):
@@ -54,27 +52,6 @@ class Record:
         birthday = record.birthday if record.birthday else "Not set"
         return (f"Contact name: {record.name.value}, phones: {phones}, "
                 f"birthday: {birthday}, email: {email}, address: {address}")
-
-    # def find(self, query):
-    
-    #     query = query.lower().strip()
-
-    #     for record in self.records.values():
-    #     # Match by name
-    #         if record.name.value.lower() == query:
-    #             return record
-
-    #     # Match by email
-    #     if record.email and record.email.lower() == query:
-    #         return record
-
-    #     # Match by phone number
-    #     for phone in record.phones:
-    #         if phone.value == query:
-    #             return record
-
-    # If no match is found
-        # return None
     
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)

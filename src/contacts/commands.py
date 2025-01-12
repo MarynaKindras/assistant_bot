@@ -4,7 +4,7 @@ from .record import Record
 
 @input_error
 def add_contact(args, book):
-    print(args)
+    
     if len(args) < 2:
         raise ValueError("Please provide both name and phone number.")
     
@@ -167,25 +167,20 @@ def change_contact(args, book):
     else:
         return "Invalid field. Please choose one of: phone, email, address, birthday."
 
-
-# @input_error
-# def show_contact(args, book):
-#     # Join all words in args to handle multi-word names
-#     name = ' '.join(args).strip()
-#     record = book.find(name)
-#     if record is None:
-#         raise KeyError("Contact not found")
-    
-#     return record
-
 @input_error
 def show_contact(args, book):
+    """
+    show contact function
+    """
+   
     # Join all words in args to handle multi-word names or email inputs
     query = ' '.join(args).strip()
     
     # Attempt to find the record by name
     record = book.find(query)
+    
     if record is None:
+        
         # If no record is found by name, search by email
         for rec in book.data.values():  # Iterate through all records
             # Check if email exists and matches the query
@@ -208,6 +203,9 @@ def add_birthday(args, book):
     
     # Join all but the last argument for the name, and treat the last as the birthday
     *name_parts, birthday = args
+    """
+        If no record is found by name, search by email
+    """
     name = ' '.join(name_parts).strip()
 
     record = book.find(name)
