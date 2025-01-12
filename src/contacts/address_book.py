@@ -12,7 +12,7 @@ class AddressBook(UserDict):
     #     return self.data.get(name, None)
     
     def find(self, query):
-    # Find a record by name
+    # Find a record by query
         return self.data.get(query)
     
     # def find(self, query):
