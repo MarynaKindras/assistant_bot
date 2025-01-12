@@ -55,11 +55,11 @@ def main():
                     elif command == COMMANDS['birthdays']:
                         print(birthdays(args, book))
                     elif command == COMMANDS['add_note']:
-                        print(add_note(args, notebook))
+                        print(add_note(notebook))
                     elif command == COMMANDS['all_notes']:
                         notebook.display_all_notes()
                     elif command == COMMANDS['find_notes']:
-                        print(find_notes_interactive(args, notebook))
+                        print(find_notes_interactive(notebook))
                     elif command == COMMANDS['help']:
                         print_help()
                     elif command in [COMMANDS['close'], COMMANDS['exit']]:
