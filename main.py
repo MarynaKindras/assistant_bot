@@ -21,7 +21,7 @@ def main():
     # Load data from files
     book = load_data(CONTACTS_FILE_NAME, AddressBook)
     notebook = load_data(NOTES_FILE_NAME, NoteBook)
-    print("Welcome to the assistant bot!")
+    print("Welcome to the assistant bot! Type 'help' to see the list of available commands.")
 
     # Initialize the PromptSession with the CommandCompleter
     command_completer = CommandCompleter(COMMANDS.values())
