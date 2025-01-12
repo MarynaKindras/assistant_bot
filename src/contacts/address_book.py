@@ -1,22 +1,44 @@
 from collections import UserDict
 from datetime import datetime, timedelta
 
-
 class AddressBook(UserDict):
     def add_record(self, record):
         if record.name.value in self.data:
             raise ValueError("Record with this name already exists.")
         self.data[record.name.value] = record
 
-    def find(self, name):
-        return self.data.get(name, None)
+
+    # def find(self, name):
+    #     return self.data.get(name, None)
+    
+    def find(self, query):
+    # Find a record by name
+        return self.data.get(query)
+    
+    # def find(self, query):
+    
+    #     query = query.lower().strip()
+
+    #     for record in self.records.values():
+    #     # Match by name
+    #         if record.name.value.lower() == query:
+    #             return record
+
+    #     # Match by email
+    #     if record.email and record.email.lower() == query:
+    #         return record
+
+    #     # Match by phone number
+    #     for phone in record.phones:
+    #         if phone.value == query:
+    #             return record
 
     def delete(self, name):
         if name in self.data:
             del self.data[name]
         else:
             raise ValueError("Record not found.")
-
+    
     #     return upcoming_birthdays
     def get_upcoming_birthdays(self, days):
         today = datetime.today().date()
@@ -35,16 +57,14 @@ class AddressBook(UserDict):
 
             # If the birthday has already passed this year, use next year's date
             if birthday_this_year < today:
-                birthday_this_year = birthday_this_year.replace(
-                    year=today.year + 1)
+                birthday_this_year = birthday_this_year.replace(year=today.year + 1)
 
             # Check if the birthday falls within the specified range
             if today <= birthday_this_year <= end_date:
                 # Adjust the congratulation date if it falls on a weekend
                 if birthday_this_year.weekday() in (5, 6):  # Saturday or Sunday
                     days_to_monday = (7 - birthday_this_year.weekday()) % 7
-                    congratulation_date = birthday_this_year + \
-                        timedelta(days=days_to_monday)
+                    congratulation_date = birthday_this_year + timedelta(days=days_to_monday)
                 else:
                     congratulation_date = birthday_this_year
 
@@ -55,14 +75,17 @@ class AddressBook(UserDict):
 
         return upcoming_birthdays
 
+    
     def display_all_contacts(self):
         if not self.data:
             print("The address book is empty.")
         if not hasattr(self, 'email'):
             self.email = None
         if not hasattr(self, 'address'):
-            self.address = None
+            self.address = None 
         else:
             print("All contacts:")
             for record in self.data.values():
                 print(record)
+
+
