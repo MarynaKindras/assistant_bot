@@ -21,7 +21,7 @@ def print_help():
         (COMMANDS['change_contact'], "<name>",
          "Change any field for the existing contact."),
         (COMMANDS['delete_contact'], "<name>", "Delete existing contact."),
-        (COMMANDS['show_phones'], "<name>",
+        (COMMANDS['show_contact'], "<name>",
          "Show the phone numbers for the given contact."),
         (COMMANDS['all_contacts'], "",
          "Display all contacts in the address book."),

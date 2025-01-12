@@ -8,7 +8,7 @@ COMMANDS = {
     "add_contact": "add-contact",
     "change_contact": "change-contact",
     "delete_contact": "delete-contact",
-    "show_phones": "show-phones",
+    "show_contact": "show-contact",
     "all_contacts": "all-contacts",
     "add_birthday": "add-birthday",
     "show_birthday": "show-birthday",

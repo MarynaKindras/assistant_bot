@@ -11,7 +11,7 @@ from src.utils.persistence import save_data, load_data
 from src.utils.utils import parse_input
 from src.contacts.address_book import AddressBook
 from src.notes.notebook import NoteBook
-from src.contacts.commands import add_contact, change_contact, delete_contact, show_phone, add_birthday, show_birthday, birthdays
+from src.contacts.commands import add_contact, change_contact, delete_contact, show_contact, add_birthday, show_birthday, birthdays
 
 
 def main():
@@ -44,8 +44,8 @@ def main():
                         print(change_contact(args, book))
                     elif command == COMMANDS['delete_contact']:
                         print(delete_contact(args, book))
-                    elif command == COMMANDS['show_phones']:
-                        print(show_phone(args, book))
+                    elif command == COMMANDS['show_contact']:
+                        print(show_contact(args, book))
                     elif command == COMMANDS['all_contacts']:
                         book.display_all_contacts()
                     elif command == COMMANDS['add_birthday']:

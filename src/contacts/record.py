@@ -1,6 +1,5 @@
 from .fields import Name, Phone, Birthday, Address, Email
 
-
 class Record:
     def __init__(self, name):
         self.name = Name(name)
@@ -34,12 +33,26 @@ class Record:
     def find_phone(self, phone):
         for p in self.phones:
             if p.value == phone:
+                print(p)
                 return p
         return None
-
-    def find(self, name):
-        return self.records.get(name)
-
+     
+    def find(self, query):
+    # Find a record by query
+        return self.data.get(query)
+    
+    def show_contact(args, book):
+        name = " ".join(args).strip()
+        record = book.find(name)
+        if not record:
+            return f"Contact '{name}' not found."
+        phones = "; ".join(p.value for p in record.phones) if record.phones else "No phone numbers set"
+        email = record.email if record.email else "Not provided"
+        address = record.address if record.address else "Not provided"
+        birthday = record.birthday if record.birthday else "Not set"
+        return (f"Contact name: {record.name.value}, phones: {phones}, "
+                f"birthday: {birthday}, email: {email}, address: {address}")
+    
     def add_birthday(self, birthday):
         self.birthday = Birthday(birthday)
 
