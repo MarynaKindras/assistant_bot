@@ -1,5 +1,15 @@
 """
-Main file with all commands to handle contacts actions
+This module contains functions for managing and interacting with contacts in an address book.
+
+The following operations are provided:
+1. `add_contact` - Adds a new contact to the address book with a name, phone number, and optional details such as address, email, and birthday.
+2. `change_contact` - Modifies an existing contact by changing specified fields such as phone number, email, address, or birthday.
+3. `show_contact` - Retrieves and displays contact details by searching for a contact based on name or email.
+4. `add_birthday` - Adds or updates a contact's birthday.
+5. `show_birthday` - Displays a contact's birthday.
+6. `birthdays` - Displays a list of upcoming birthdays within a specified number of days.
+7. `delete_contact` - Deletes a contact from the address book after confirming the deletion.
+Each function includes appropriate validation and error handling to ensure proper contact management. The input_error decorator is used to catch common input-related errors such as invalid arguments or missing information.
 """
 from src.utils.utils import input_error
 from .record import Record
@@ -257,13 +267,23 @@ def birthdays(args, book):
 @input_error
 def delete_contact(args, book):
     """
-    function for deletion contact by name
+    Deletes a contact from the address book after confirming the action.
+
+    This function first checks if the user has provided the name of the contact to delete. 
+    If the contact is found in the address book, the user is asked to confirm the deletion 
+    by typing 'yes' or 'no'. If the user confirms, the contact is deleted; otherwise, 
+    the deletion is canceled. If the contact is not found or the user input is invalid, 
+    appropriate messages are returned.
+
+    Args:
+        args (list): A list containing the contact's name as space-separated strings.
+        book (AddressBook): The address book instance that contains the contacts.
     """
+
     if not args:
         raise ValueError("Please provide the name of the contact to delete.")
-
     name = " ".join(args).strip()
-    
+
     # Find contact
     record = book.find(name)
     if record is None:
