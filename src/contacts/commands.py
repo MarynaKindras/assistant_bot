@@ -12,6 +12,7 @@ The following operations are provided:
 Each function includes appropriate validation and error handling to ensure proper contact management. The input_error decorator is used to catch common input-related errors such as invalid arguments or missing information.
 """
 from src.utils.utils import input_error
+from src.contacts.fields import  Phone
 from .record import Record
 
 
@@ -19,9 +20,10 @@ def add_contact(args, book):
     """
     Function to handle adding a contact.
     """
+    # Check if there are enough arguments (at least a name and phone number)
     if len(args) < 2:
-        raise ValueError("Please provide both name and phone number.")
-    
+        return "Error: Invalid command. Try again with correct data."
+
     # The phone number is the last argument
     phone = args[-1]
 
@@ -38,14 +40,14 @@ def add_contact(args, book):
         book.add_record(record)
         message = "Contact added."
 
+    # Add the phone number to the record
     try:
-        # Attempt to add the phone number to the record
-        record.add_phone(phone)
+        phone = Phone(phone)  # Assuming Phone validation here
+        record.add_phone(phone.value)
     except ValueError as e:
-        # Handle the ValueError raised by the phone validation
-        return f"Invalid phone number. {str(e)}"
+        return str(e)  # Return the error if phone validation fails
 
-    # Extract additional details
+    # Extract additional details (address, email, birthday)
     address, email, birthday = None, None, None
     i = 0
 
@@ -84,7 +86,7 @@ def add_contact(args, book):
         response = input("Maybe you want to add more details? Such as address, email, and birthday? (yes/no): ")
         if response.lower() == 'yes':
             additional_info = input("Please enter additional details (e.g., email example@gmail.com birthday DD.MM.YYYY address: text up to 100 symbols): ").split()
-            
+
             # Process the additional info
             i = 0
             while i < len(additional_info):
@@ -105,7 +107,7 @@ def add_contact(args, book):
                     i += 2
                 else:
                     print("Invalid command in the additional details. The contact has been added without additional information.")
-                    return message
+                    return message  # If the additional input is invalid, return the original message
 
             # Add the parsed details to the record
             if address:
