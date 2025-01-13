@@ -38,8 +38,12 @@ def add_contact(args, book):
         book.add_record(record)
         message = "Contact added."
 
-    # Add the phone number to the record
-    record.add_phone(phone)
+    try:
+        # Attempt to add the phone number to the record
+        record.add_phone(phone)
+    except ValueError as e:
+        # Handle the ValueError raised by the phone validation
+        return f"Invalid phone number. {str(e)}"
 
     # Extract additional details
     address, email, birthday = None, None, None
@@ -112,6 +116,7 @@ def add_contact(args, book):
                 record.add_birthday(birthday)
 
     return message
+
     
 @input_error
 def change_contact(args, book):
