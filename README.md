@@ -52,20 +52,21 @@ python main.py
 
 ### :calling: Contacts commands:
 
-| Available commands: | Parameters:        | Description:                                            |
-| ------------------- | ------------------ | ------------------------------------------------------- |
-| add-contact         | < name > < phone > | Add a new contact with the given name and phone number. |
-| change-contact      | < name > < phone > | Change the phone number for an existing contact.        |
-| delete-contact      | < name >           | Delete existing contact.                                |
-| show-contact        | < name >           | Show the phone numbers for the given contact.           |
-| all-contacts        |                    | Display all contacts in the address book.               |
+| Available commands: | Parameters:                                   | Description:                                                                                                                                      |
+| ------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| add-contact         | < name > < phone >                            | Add a new contact with the given name (multi-word) and phone number. You will be prompted to enter the address (multi-words), birthday, and email.|
+| change-contact      | < name > < phone > < old_phone > < new_value >| Change the phone number for an existing contact.                                                                                                  |
+| change-contact      | < name > < field > < new_value >              | Change field: address (multi-words), birthday, or email for the existing contact.                                                                 |
+| delete-contact      | < name >                                      | Delete existing contact.                                                                                                                          |
+| show-contact        | < name > or < email >                         | Show the full contact information.                                                                                                                |
+| all-contacts        |                                               | Display all contacts in the address book.                                                                                                         |
 
 ### :calendar: Birthday commands:
 
 | Available commands: | Parameters:       | Description:                                                   |
 | ------------------- | ----------------- | -------------------------------------------------------------- |
 | add-birthday        | < name > < date > | Add a birthday for the given contact (format: DD.MM.YYYY).     |
-| show-birthday       | < name >          | Show the birthday of the given contact.Show this help message. |
+| show-birthday       | < name >          | Show the birthday of the given contact.                        |
 | birthdays           | < days >          | Show contacts with birthdays in the next given number of days. |
 
 ### :label: Notes commands:
