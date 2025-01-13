@@ -1,10 +1,24 @@
-from ..utils.utils import input_error
+"""
+This module contains functions for managing and interacting with contacts in an address book.
+
+The following operations are provided:
+1. `add_contact` - Adds a new contact to the address book with a name, phone number, and optional details such as address, email, and birthday.
+2. `change_contact` - Modifies an existing contact by changing specified fields such as phone number, email, address, or birthday.
+3. `show_contact` - Retrieves and displays contact details by searching for a contact based on name or email.
+4. `add_birthday` - Adds or updates a contact's birthday.
+5. `show_birthday` - Displays a contact's birthday.
+6. `birthdays` - Displays a list of upcoming birthdays within a specified number of days.
+7. `delete_contact` - Deletes a contact from the address book after confirming the deletion.
+Each function includes appropriate validation and error handling to ensure proper contact management. The input_error decorator is used to catch common input-related errors such as invalid arguments or missing information.
+"""
+from src.utils.utils import input_error
 from .record import Record
 
 
-@input_error
 def add_contact(args, book):
-    
+    """
+    Function to handle adding a contact.
+    """
     if len(args) < 2:
         raise ValueError("Please provide both name and phone number.")
     
@@ -86,7 +100,8 @@ def add_contact(args, book):
                         birthday = additional_info[i + 1].strip()
                     i += 2
                 else:
-                    i += 1
+                    print("Invalid command in the additional details. The contact has been added without additional information.")
+                    return message
 
             # Add the parsed details to the record
             if address:
@@ -96,11 +111,13 @@ def add_contact(args, book):
             if birthday:
                 record.add_birthday(birthday)
 
-
     return message
     
 @input_error
 def change_contact(args, book):
+    """
+    function to handle changes in the contact
+    """
     if len(args) < 3:
         return "Please check your request and specify the contact name, field to change (phone/email/address/birthday), and the new value."
 
@@ -198,16 +215,14 @@ def show_contact(args, book):
 
 @input_error
 def add_birthday(args, book):
+    """
+    add birthday function
+    """
     if len(args) < 2:
-        raise IndexError("Not enough arguments. Provide a name and a birthday.")
-    
+        raise IndexError("Not enough arguments. Provide a name and a birthday.")  
     # Join all but the last argument for the name, and treat the last as the birthday
     *name_parts, birthday = args
-    """
-        If no record is found by name, search by email
-    """
     name = ' '.join(name_parts).strip()
-
     record = book.find(name)
     if record is None:
         raise KeyError("Contact not found")
@@ -217,6 +232,9 @@ def add_birthday(args, book):
 
 @input_error
 def show_birthday(args, book):
+    """
+    show contact birthday function
+    """
     name = ' '.join(args).strip()
     print(f"Looking up record for: {name}")
     record = book.find(name)
@@ -227,20 +245,20 @@ def show_birthday(args, book):
 
 @input_error
 def birthdays(args, book):
+    """
+    function to show all birthdays during input perion from starting date 
+    """
     # Handle the days argument from the command
     if not args:
         return "Please provide the number of days (e.g., 'birthdays 8')."
-    
     try:
         days = int(args[0])  # Convert the first argument to an integer
     except ValueError:
         return "Invalid input. Please provide a valid number of days."
-    
     # Get upcoming birthdays
     upcoming_birthdays = book.get_upcoming_birthdays(days=days)
     if not upcoming_birthdays:
         return "No upcoming birthdays."
-    
     return "\n".join(
         f"{record['name']}: {record['congratulation_date']}"
         for record in upcoming_birthdays
@@ -248,11 +266,24 @@ def birthdays(args, book):
 
 @input_error
 def delete_contact(args, book):
+    """
+    Deletes a contact from the address book after confirming the action.
+
+    This function first checks if the user has provided the name of the contact to delete. 
+    If the contact is found in the address book, the user is asked to confirm the deletion 
+    by typing 'yes' or 'no'. If the user confirms, the contact is deleted; otherwise, 
+    the deletion is canceled. If the contact is not found or the user input is invalid, 
+    appropriate messages are returned.
+
+    Args:
+        args (list): A list containing the contact's name as space-separated strings.
+        book (AddressBook): The address book instance that contains the contacts.
+    """
+
     if not args:
         raise ValueError("Please provide the name of the contact to delete.")
-    
     name = " ".join(args).strip()
-    
+
     # Find contact
     record = book.find(name)
     if record is None:
