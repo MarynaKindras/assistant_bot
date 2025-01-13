@@ -144,22 +144,8 @@ class Record:
                 print(p)
                 return p
         return None
-     
-    def find(self, query):
-        """
-        Searches for a contact record based on the provided query (either name or email).
-
-        Args:
-            query (str): The name or email of the contact to search for.
-
-        Returns:
-            Record or None: If the contact is found, the corresponding Record object is returned.
-                            If no match is found, None is returned.
-        """
-    # Find a record by query
-        return self.data.get(query)
     
-    def show_contact(args, book):
+    def show_contact(self, args, book):
         """
         Displays the details of a contact by searching for the provided name.
 
